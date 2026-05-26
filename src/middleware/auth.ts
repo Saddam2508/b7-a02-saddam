@@ -27,7 +27,7 @@ export const auth = async (req: Request, res: Response, next: NextFunction) => {
     }
 
     const user = await authService.getUserById(payload.id);
-    console.log(user);
+
     if (!user) {
       return sendResponse(res, { message: "User not found", error: true }, 404);
     }
