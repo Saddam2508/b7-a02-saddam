@@ -2,7 +2,7 @@ import type { Request, Response } from "express";
 
 import { signToken, verifyToken } from "../../utils/jwt";
 import { sendResponse } from "../../utils/sendResponse";
-import authService from "../services/auth.service";
+import authService from "./auth.service";
 
 export const signup = async (req: Request, res: Response) => {
   const { name, email, password, role } = req.body;
@@ -44,9 +44,9 @@ export const login = async (req: Request, res: Response) => {
   });
 
   const result = {
-    user: user,
     accessToken,
     refreshToken,
+    user: user,
   };
 
   sendResponse(res, { message: "User login successfully!", data: result });

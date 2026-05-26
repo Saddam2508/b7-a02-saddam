@@ -1,7 +1,7 @@
 import type { NextFunction, Request, Response } from "express";
 
-import authService from "../api/services/auth.service";
-import type { Role } from "../types";
+import authService from "../modules/auth/auth.service";
+import type { Role } from "../modules/auth/auth.interface";
 import { verifyToken } from "../utils/jwt";
 import { sendResponse } from "../utils/sendResponse";
 

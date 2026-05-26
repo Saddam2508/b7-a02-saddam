@@ -9,7 +9,7 @@ import {
   refresh,
   signup,
   updateUser,
-} from "../controllers/auth.controller";
+} from "./auth.controller";
 const router = Router();
 
 router.post("/signup", signup);

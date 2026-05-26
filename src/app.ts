@@ -6,7 +6,7 @@ import express, {
 import globalErrorHandler from "./middleware/globalErrorHandler";
 import logger from "./middleware/logger";
 import cookieParser from "cookie-parser";
-import authRoutes from "./api/routes/auth.routes";
+import authRoutes from "./modules/auth/auth.routes";
 const app: Application = express();
 
 app.use(express.json());
