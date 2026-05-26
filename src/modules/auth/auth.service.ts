@@ -50,7 +50,7 @@ class AuthService {
 
   async getUserById(userId: string) {
     const result = await sql`
-      SELECT id, name, email, age, role
+      SELECT id, name, email, role
       FROM users
       WHERE id = ${userId}
     `;

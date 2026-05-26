@@ -7,6 +7,7 @@ import globalErrorHandler from "./middleware/globalErrorHandler";
 import logger from "./middleware/logger";
 import cookieParser from "cookie-parser";
 import authRoutes from "./modules/auth/auth.routes";
+import issueRoutes from "./modules/issues/issue.routes";
 const app: Application = express();
 
 app.use(express.json());
@@ -18,6 +19,7 @@ app.get("/", (req: Request, res: Response) => {
 });
 
 app.use("/api/auth", authRoutes);
+app.use("/api/issues", issueRoutes);
 
 app.use(globalErrorHandler);
 

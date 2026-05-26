@@ -16,8 +16,9 @@ export const auth = async (req: Request, res: Response, next: NextFunction) => {
       );
     }
 
-    const payload = verifyToken(token, "access");
+    const tokenWithoutBearer = token.split(" ")[1];
 
+    const payload = verifyToken(tokenWithoutBearer as string, "refresh");
     if (!payload) {
       return sendResponse(
         res,
@@ -25,7 +26,6 @@ export const auth = async (req: Request, res: Response, next: NextFunction) => {
         401,
       );
     }
-
     const user = await authService.getUserById(payload.id);
 
     if (!user) {
