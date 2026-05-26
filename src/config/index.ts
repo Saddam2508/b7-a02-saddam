@@ -6,4 +6,6 @@ export const config = {
   port: env.PORT,
   database_url: env.DATABASE_URL,
   node_env: env.NODE_ENV,
+  secret: env.JWT_SECRET,
+  refresh_secret: env.JWT_REFRESH_SECRET,
 };

@@ -3,5 +3,7 @@ declare namespace NodeJS {
     PORT: string;
     DATABASE_URL: string;
     NODE_ENV: string;
+    JWT_SECRET: string;
+    JWT_REFRESH_SECRET: string;
   }
 }
