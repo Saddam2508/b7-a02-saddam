@@ -2,7 +2,7 @@ export const role = ["contributor", "maintainer"] as const;
 export type Role = (typeof role)[number];
 
 export type User = {
-  id: number;
+  id?: number;
   name: string;
   email: string;
   password_hash: string;
