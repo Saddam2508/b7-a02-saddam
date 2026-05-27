@@ -84,11 +84,38 @@ class IssueService {
     return result;
   }
 
-  async getSingleIssueService(id: string) {
+  async getSingleIssueService(issueId: string) {
     const result = await sql`
-    SELECT * FROM issues WHERE id=${id}
+    SELECT * FROM issues WHERE id=${issueId}
     `;
     return result;
+  }
+
+  async updateIssueService(issueId: string, updates: Partial<RIssue>) {
+    const { title, description, type } = updates;
+    const result = await sql`
+      UPDATE issues
+      SET
+        title = COALESCE(${title}, title),
+        description = COALESCE(${description}, description),
+        type = COALESCE(${type}, type),
+        updated_at = NOW()
+      WHERE id = ${issueId}
+      RETURNING id, title, description, type, status, reporter_id, created_at, updated_at
+    `;
+    return result[0];
+  }
+
+  async deleteIssue(issueId: string) {
+    try {
+      await sql`
+        DELETE FROM issues
+        WHERE id = ${issueId}
+      `;
+      return true;
+    } catch {
+      return false;
+    }
   }
 }
 

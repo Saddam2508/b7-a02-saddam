@@ -11,7 +11,4 @@ export type User = {
   updated_at: Date;
 };
 
-export type RUser = Omit<
-  User,
-  "id" | "created_at" | "updated_at" | "password_hash"
->;
+export type RUser = Omit<User, "created_at" | "updated_at" | "password_hash">;

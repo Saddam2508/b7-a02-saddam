@@ -24,32 +24,36 @@ export const signup = async (req: Request, res: Response) => {
 };
 
 export const login = async (req: Request, res: Response) => {
-  const { email, password } = req.body;
-  const user = await authService.validateUser(email, password);
+  try {
+    const { email, password } = req.body;
+    const user = await authService.validateUser(email, password);
 
-  if (!user) {
-    return sendResponse(
-      res,
-      { message: "Invalid email or password", error: true },
-      401,
-    );
+    if (!user) {
+      return sendResponse(
+        res,
+        { message: "Invalid email or password", error: true },
+        401,
+      );
+    }
+
+    const { accessToken, refreshToken } = signToken(user);
+
+    res.cookie("refreshToken", refreshToken, {
+      secure: false,
+      httpOnly: true,
+      sameSite: "lax",
+    });
+
+    const result = {
+      accessToken,
+      refreshToken,
+      user: user,
+    };
+
+    sendResponse(res, { message: "User login successfully!", data: result });
+  } catch (error) {
+    console.error(error);
   }
-
-  const { accessToken, refreshToken } = signToken(user);
-
-  res.cookie("refreshToken", refreshToken, {
-    secure: false,
-    httpOnly: true,
-    sameSite: "lax",
-  });
-
-  const result = {
-    accessToken,
-    refreshToken,
-    user: user,
-  };
-
-  sendResponse(res, { message: "User login successfully!", data: result });
 };
 
 export const logout = async (req: Request, res: Response) => {
