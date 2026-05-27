@@ -4,7 +4,7 @@ A collaborative backend platform for software teams to report bugs, suggest feat
 
 ## Live URL
 
-[https://your-live-url.com](https://your-live-url.com)
+[https://b7-a02-saddam.vercel.app](https://b7-a02-saddam.vercel.app)
 
 ## GitHub Repository
 
