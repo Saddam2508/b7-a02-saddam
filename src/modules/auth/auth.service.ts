@@ -40,10 +40,11 @@ class AuthService {
 
     return isValid ? user : null;
   }
-  async getUsers() {
+  async getUsers(ids?: number[]) {
     const result = await sql`
       SELECT id, name, email, role
       FROM users
+      WHERE id = ANY(${ids})
     `;
     return result;
   }

@@ -7,6 +7,7 @@ export type Issue = {
   title: string;
   description: string;
   type: IssueType;
+  status: string;
   reporter_id: number;
   created_at: Date;
   updated_at: Date;
@@ -16,3 +17,9 @@ export type RIssue = Omit<
   Issue,
   "id" | "created_at" | "updated_at" | "reporter_id"
 >;
+
+export type IssueFilters = {
+  sort?: string;
+  type?: string;
+  status?: string;
+};
